@@ -20,6 +20,9 @@ void draw(char *spec, Moveable *moveable) {
     int x_delta = 0;
     int y_delta = 0;
 
+    if(moveable->color != 0) {
+        attron(COLOR_PAIR(moveable->color));
+    }
     for(int i = 0; i < strlen(spec); i++) {
         if(spec[i] == '\n') {
             y_delta += 1;
@@ -28,9 +31,11 @@ void draw(char *spec, Moveable *moveable) {
         } else {
             int pos_y = moveable->pos_y + y_delta + 1;
             int pos_x = ((moveable->pos_x + x_delta) % WIDTH) + 1;
-            
             mvaddch(pos_y, pos_x, spec[i]);
             x_delta += 1;
         }
+    }
+    if(moveable->color != 0) {
+        attroff(COLOR_PAIR(moveable->color));
     }
 }

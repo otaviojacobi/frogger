@@ -6,6 +6,7 @@ Frog *new_frog(int pos_x, int pos_y) {
 
     moveable->pos_x = pos_x;
     moveable->pos_y = pos_y;
+    moveable->color = FROG_COLOR;
 
     frog->moveable = moveable;
     frog->spec = FROG_SPEC;

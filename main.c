@@ -17,11 +17,16 @@ void update_frame(Game *game);
 
 void init() {
     initscr();  // initialize curses, this also "clears" the screen
+    start_color();
+
     cbreak();   // among other things, disable buffering
     noecho();   // disable "echo" of characters from input
     nodelay(stdscr, TRUE);
     curs_set(0);
-    srand(3);
+    srand(time(NULL));
+
+    init_pair(FROG_COLOR, COLOR_GREEN, COLOR_BLACK);
+    init_pair(WATER_COLOR, COLOR_WHITE, COLOR_BLUE);
 
 }
 
@@ -31,6 +36,7 @@ int main() {
     Game *game = new_game(3) ;
 
     while(1) update_frame(game);
+
 }
 
 

@@ -27,9 +27,9 @@ Game *new_game(int lifes) {
 void reset(Game *game) {
     game->lifes-=1;
 
-    if(game->lifes <= 0) {
-        exit(0);
-    }
+    // if(game->lifes <= 0) {
+    //     exit(0);
+    // }
 
     game->frog->moveable->pos_x = WIDTH/2;
     game->frog->moveable->pos_y = HEIGHT-2;
@@ -52,19 +52,32 @@ void init_borders() {
     }
 }
 
+void draw_water() {
+    attron(COLOR_PAIR(WATER_COLOR));
+    //int index = 0;
+    for(int y = 5; y < (HEIGHT + 4)/2; y++) {
+        for(int x = 1; x < WIDTH + 1; x++) {
+            mvaddch(y, x, '~');
+        }
+    }
+    attroff(COLOR_PAIR(WATER_COLOR));
+}
+
 void clearup() {
     erase();
     draw_borders();
+    draw_water();
+    //refresh();
 }
 
 int has_collision(Game *game) {
     int frog_x = game->frog->moveable->pos_x + 1;
     int frog_y = game->frog->moveable->pos_y + 1;
 
-    int top_left = mvinch(frog_y, frog_x);
-    int top_right = mvinch(frog_y, frog_x+1);
-    int bottom_left = mvinch(frog_y+1, frog_x);
-    int bottom_right = mvinch(frog_y+1, frog_x+1);
+    char top_left = mvinch(frog_y, frog_x);
+    char top_right = mvinch(frog_y, frog_x+1);
+    char bottom_left = mvinch(frog_y+1, frog_x);
+    char bottom_right = mvinch(frog_y+1, frog_x+1);
 
 
     if((top_left != ' ' && top_left != '@') ||

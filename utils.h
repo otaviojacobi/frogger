@@ -15,6 +15,7 @@ typedef struct _Moveable {
     int pos_y;
     int pos_x;
     int speed;
+    int color;
 } Moveable;
 
 void logmsg(char *msg);
