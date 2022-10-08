@@ -1,0 +1,15 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define WIDTH 80
+#define HEIGHT 30
+#define FPS 60
+
+#define NUMBER_OF_CAR_ROWS 5
+#define MAX_NUMBER_OF_CAR_IN_ROW 5
+#define MIN_NUMBER_OF_CAR_IN_ROW 1
+#define MAX_CAR_SPEED 13
+#define MIN_CAR_SPEED 3
+#define MAX_AMOUNT_CARS MAX_NUMBER_OF_CAR_IN_ROW * NUMBER_OF_CAR_ROWS
+
+#endif
